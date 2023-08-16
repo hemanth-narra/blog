@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	log.Printf("Hello, world! This is Prose.")
+	log.Printf("Hello, world! This is Hemanth's Blog.")
 
 	s, err := newServer()
 

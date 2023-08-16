@@ -24,7 +24,7 @@ WORKDIR /go/src/app
 COPY . .
 
 # Build the command inside the container
-RUN go build -v -o prose
+RUN go build -v -o blog
 
 # Run the web service on container startup
-CMD ["./prose"]
+CMD ["./blog"]
