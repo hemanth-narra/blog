@@ -5,7 +5,7 @@
         <description>{{description}}</description>
         <language>en-US</language>
         <pubDate>{{pubDate}}</pubDate>
-        <atom:link href="https://hemanthnarra.in/rss.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="{{link}}/rss.xml" rel="self" type="application/rss+xml" />
         {{{items}}}
     </channel>
 </rss>
