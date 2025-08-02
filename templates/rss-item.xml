@@ -1,8 +1,9 @@
 <item>
-    <title>{{metadata.title}}</title>
-    <link>{{getFullUrl slug}}</link>
-    <guid isPermaLink="false">{{slug}}</guid>
-    <description>{{metadata.summary}}</description>
-    <author>mailto@hemanthnarra799@gmail.com (Hemanth Kumar Narra)</author>
-    <pubDate>{{rssDatetime metadata.time}}</pubDate>
+  <title>{{metadata.title}}</title>
+  <link>https://blog.narra.eu.org/{{slug}}</link>
+  <guid>https://blog.narra.eu.org/{{slug}}</guid>
+  <description>{{metadata.summary}}</description>
+  <author>hemanthnarraca@gmail.com (Hemanth Kumar Narra)</author>
+  <pubDate>{{rssDatetime metadata.time}}</pubDate>
 </item>
+
