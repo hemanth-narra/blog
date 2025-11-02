@@ -8,5 +8,8 @@
 
 4. Visit `http://localhost:8080` in your web browser to view your blog.
 
+# Only for me 
+Automated the docker deployment. 
+
 # Credits
 Thanks to [Naman sood](https://twitter.com/tendstofortytwo) for making [Prose](https://github.com/tendstofortytwo/prose)
