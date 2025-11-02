@@ -23,7 +23,6 @@
 	<div class="grid hidden"></div>
 	<header class="header">
 		<h1 class="title">Hemanth Narra Writes</h1>
-		<button class="hamburger" aria-label="Toggle navigation menu">☰</button>
 		<nav class="nav">
 			<a href="/">Home</a>
 			<a href="https://medium.com/@hemanthnarrax" target="_blank" rel="noopener noreferrer">Pieces</a>
@@ -37,24 +36,5 @@
 		<p>Made by Hemanth Narra</p>
 		<p>With Love 🤍</p>
 	</footer>
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-		  const hamburger = document.querySelector('.hamburger');
-		  const nav = document.querySelector('.nav');
-
-		  if (hamburger && nav) {
-		    hamburger.addEventListener('click', () => {
-		      nav.classList.toggle('active');
-		    });
-		  }
-
-		  // Close on link click (improves mobile UX)
-		  document.querySelectorAll('.nav a').forEach(link => {
-		    link.addEventListener('click', () => {
-		      nav.classList.remove('active');
-		    });
-		  });
-		});
-	</script>
 </body>
 </html>
