@@ -13,6 +13,7 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="color-scheme" content="dark light">
 	<meta name="viewport" content="width=device-width">
+	<meta name="theme-color" content="#1a1a1a"> <!-- Bonus: Mobile browser bar color match -->
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/nunito.css"> 
 	<link rel="stylesheet" href="/css/jetbrainsmono.css"> 
@@ -20,9 +21,10 @@
 </head>
 <body>
 	<div class="grid hidden"></div>
-	<header>
+	<header class="header">
 		<h1 class="title">Hemanth Narra Writes</h1>
-		<nav>
+		<button class="hamburger" aria-label="Toggle navigation menu">☰</button>
+		<nav class="nav">
 			<a href="/">Home</a>
 			<a href="https://medium.com/@hemanthnarrax" target="_blank" rel="noopener noreferrer">Pieces</a>
 			<a href="https://narra.eu.org/" target="_blank" rel="noopener noreferrer">Contact</a>
@@ -35,5 +37,24 @@
 		<p>Made by Hemanth Narra</p>
 		<p>With Love 🤍</p>
 	</footer>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+		  const hamburger = document.querySelector('.hamburger');
+		  const nav = document.querySelector('.nav');
+
+		  if (hamburger && nav) {
+		    hamburger.addEventListener('click', () => {
+		      nav.classList.toggle('active');
+		    });
+		  }
+
+		  // Close on link click (improves mobile UX)
+		  document.querySelectorAll('.nav a').forEach(link => {
+		    link.addEventListener('click', () => {
+		      nav.classList.remove('active');
+		    });
+		  });
+		});
+	</script>
 </body>
 </html>
