@@ -231,6 +231,7 @@ article {
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.85em;
 		color: var(--strongColor);
+		word-wrap: break-word;
 	}
 	
 	pre {
@@ -333,12 +334,16 @@ article {
 		margin: 2*$ls $ls $ls;
 	}
 
-	.mastodon-embed {
+	.mastodon-embed, .youtube-embed {
 		display: block;
 		margin: $ls auto;
 		width: 100%;
 		max-width: 30rem !important; // override style attribute they ship by default
 		border: 0;
+	}
+
+	.youtube-embed {
+		aspect-ratio: 16 / 9;
 	}
 }
 
