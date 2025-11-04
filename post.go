@@ -48,6 +48,7 @@ func newPost(slug string) (*Post, error) {
 			extension.Strikethrough,
 			extension.Typographer,
 			extension.Footnote,
+			extension.Table,
 			meta.Meta,
 			highlighting.Highlighting,
 			emoji.New(emoji.WithRenderingMethod(emoji.Unicode)),
