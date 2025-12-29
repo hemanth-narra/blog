@@ -20,12 +20,19 @@ import (
 	"github.com/yuin/goldmark/renderer/html"
 )
 
+// Default author for backward compatibility
+const DefaultAuthor = "Hemanth Narra"
+
 // Metadata stores the data about a post that needs to be visible
-// at the home page.
+// at the home page and post header.
 type Metadata struct {
 	Title   string
 	Summary string
 	Time    int64 // unix timestamp
+
+	// Author support
+	Author  string   `mapstructure:"author"`
+	Authors []string `mapstructure:"authors"`
 }
 
 // Post stores the contents of a blog post.
@@ -57,20 +64,37 @@ func newPost(slug string) (*Post, error) {
 			html.WithUnsafe(),
 		),
 	)
+
 	var converted bytes.Buffer
 	ctx := parser.NewContext()
+
 	err = md.Convert(data, &converted, parser.WithContext(ctx))
 	if err != nil {
 		return nil, fmt.Errorf("could not parse markdown: %s", err)
 	}
+
 	mdMap, err := meta.TryGet(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("could not parse metadata: %s", err)
 	}
+
 	var metadata Metadata
 	err = mapstructure.Decode(mdMap, &metadata)
 	if err != nil {
 		return nil, fmt.Errorf("could not destructure metadata: %s", err)
+	}
+
+	// -----------------------------
+	// Normalize authors (IMPORTANT)
+	// -----------------------------
+	if len(metadata.Authors) > 0 {
+		for i, a := range metadata.Authors {
+			metadata.Authors[i] = strings.TrimSpace(a)
+		}
+	} else if metadata.Author != "" {
+		metadata.Authors = []string{strings.TrimSpace(metadata.Author)}
+	} else {
+		metadata.Authors = []string{DefaultAuthor}
 	}
 
 	post := &Post{
@@ -81,10 +105,12 @@ func newPost(slug string) (*Post, error) {
 
 	url := blogURL + "/" + slug
 	var buf bytes.Buffer
+
 	err = createImage(post.Metadata.Title, post.Metadata.Summary, url, &buf)
 	if err != nil {
 		return nil, fmt.Errorf("could not create post image: %v", err)
 	}
+
 	post.Image, err = io.ReadAll(&buf)
 	if err != nil {
 		return nil, err
@@ -122,8 +148,8 @@ func newPostList() (postList, error) {
 			log.Printf("Loaded post %s", filename)
 		}
 	}
-	sort.Sort(pl)
 
+	sort.Sort(pl)
 	return pl, nil
 }
 
@@ -147,7 +173,6 @@ func removePost(pl postList, slug string) postList {
 			break
 		}
 	}
-	fmt.Println(pl)
 	return pl
 }
 
