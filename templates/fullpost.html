@@ -1,9 +1,20 @@
 <article>
-	<date>{{datetime metadata.time}}</date>
+	<div class="post-meta">
+		<date>{{datetime metadata.time}}</date>
+		<span class="meta-separator">·</span>
+		<span class="post-author">
+			{{#each metadata.authors}}
+				{{this}}{{#unless @last}}, {{/unless}}
+			{{/each}}
+		</span>
+	</div>
+
 	<h1>{{metadata.title}}</h1>
 	<h2>{{metadata.summary}}</h2>
+
 	<section class="content">
 		{{{contents}}}
 	</section>
+
 	<a class="load-content" href="/">&larr; Back home</a>
 </article>
