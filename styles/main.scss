@@ -69,44 +69,6 @@ body {
 	color: var(--bodyColor);
 }
 
-.grid {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	z-index: 5000;
-	background-image: linear-gradient(
-		transparent 93%, 
-		rgba(0,0,0,0.3) 93%, 
-		rgba(0,0,0,0.3)
-	);
-	background-size: 1*$ls 1*$ls;
-	pointer-events: none;
-
-	&.hidden {
-		display: none;
-	}
-}
-
-button.grid-button {
-	position: fixed;
-	bottom: 0.5*$ls;
-	right: 0.5*$ls;
-	height: 2*$ls;
-	padding: 0 1*$ls;
-	margin: 0;
-	border: 0;
-	outline: none;
-	font: inherit;
-	font-size: 0.8rem;
-	background: var(--accentColor);
-	color: white;
-	z-index: 6000;
-	border-radius: 0.2*$ls;
-	box-shadow: 0 0.1*$ls 0.1*$ls 0.0125*$ls rgba(0,0,0,0.3); 
-}
-
 header {
 	height: 3*$ls;
 	display: flex;
@@ -115,6 +77,7 @@ header {
 	width: 40*$ls;
 	max-width: 100%;
 	margin: 0 auto;
+	text-align: center;
 
 	h1.title {
 		margin: 0;
@@ -124,11 +87,6 @@ header {
 		padding: 0 $ls;
 	}
 
-	img {
-		height: 80%;
-		margin: 0 0.5*$ls;
-	}
-
 	nav {
 		display: flex;
 		height: 100%;
@@ -136,27 +94,8 @@ header {
 		a {
 			color: var(--strongColor);
 			text-decoration: none;
-			display: block;
 			line-height: 3*$ls;
 			padding: 0 $ls;
-			position: relative;
-			height: 100%;
-
-			&:before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 0.15rem;
-				background: white;
-				opacity: 0;
-				@include transition-all;
-			}
-
-			&:hover:before {
-				opacity: 1;
-			}
 		}
 	}
 }
@@ -169,12 +108,9 @@ main {
 
 article {
 	padding: 2*$ls;
-	border-radius: 0.2*$ls;
-	margin: 1*$ls 0 0;
+	margin-top: $ls;
 
-	/* -----------------------------
-	   Post Meta (Date · Authors)
-	   ----------------------------- */
+	/* ===== POST META (DATE + AUTHORS) ===== */
 	.post-meta {
 		display: flex;
 		align-items: center;
@@ -184,179 +120,37 @@ article {
 		gap: 0.25rem;
 	}
 
-	.post-meta .post-author {
+	.post-author {
 		color: var(--bodyColor);
-		font-weight: 400;
 	}
 
 	h1 {
 		font-size: 2.6rem;
-		margin: 1*$ls 0 0;
+		margin-top: $ls;
 		line-height: 2*$ls;
 		color: var(--strongColor);
 	}
 
 	h2 {
 		font-size: 1.4rem;
-		font-weight: 300;
 		font-style: italic;
 		color: var(--fadeColor);
-		line-height: 1*$ls;
-		margin: 1*$ls 0 0;
-	}
-
-	h3 {
-		line-height: $ls;
-		margin: $ls 0;
-		font-size: 1.3rem;
-		color: var(--strongColor);
-	}
-
-	h4 {
-		line-height: $ls;
-		margin: $ls 0;
-		font-size: 1rem;
-		color: var(--strongColor);
+		margin-top: $ls;
 	}
 
 	p {
 		line-height: $ls;
-		margin: $ls 0 0;
-		color: var(--bodyColor);
-	}
-
-	blockquote {
-		margin: $ls 0;
-		padding: 0 $ls;
-		border-left: 0.2rem solid var(--fadeColor);
-		color: var(--fadeColor);
-		font-style: italic;
-
-		p {
-			margin: 0;
-		}
-	}
-
-	code {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.85em;
-		color: var(--strongColor);
-		word-wrap: break-word;
-	}
-
-	pre {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.9em;
-		margin: 2*$ls 0;
-		line-height: $ls;
-		max-width: 100%;
-		overflow-x: auto;
-		padding: 0 $ls;
-
-		code {
-			font-size: 1em;
-			line-height: $ls;
-			display: block;
-			color: inherit;
-		}
-	}
-
-	figure {
-		margin: 2*$ls 0 0;
-
-		img {
-			width: 100%;
-			display: block;
-		}
-
-		img.vertical {
-			max-width: 20rem;
-			object-fit: contain;
-		}
-
-		.twitter-tweet, img.vertical {
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		figcaption {
-			margin: $ls 0;
-			line-height: $ls;
-			text-align: center;
-			font-style: italic;
-			color: var(--fadeColor);
-			font-size: 0.8rem;
-		}
+		margin-top: $ls;
 	}
 
 	section.content {
 		a {
 			@include link;
 		}
-
-		ul, ol {
-			color: var(--bodyColor);
-			margin: $ls 0;
-			padding: 0 0 0 $ls;
-			line-height: $ls;
-
-			ul, ol {
-				margin: 0;
-			}
-		}
-
-		ul {
-			li {
-				list-style: none;
-				position: relative;
-
-				&:before {
-					content: '·';
-					height: $ls;
-					width: $ls;
-					display: block;
-					position: absolute;
-					top: 0;
-					left: -$ls;
-					text-align: center;
-					line-height: $ls;
-					font-weight: bold;
-					color: var(--strongColor);
-				}
-			}
-		}
-	}
-
-	li pre {
-		margin: $ls 0;
-	}
-
-	a.load-content {
-		display: block;
-		height: 3*$ls;
-		line-height: 3*$ls;
-		color: var(--accentColor);
-		text-align: center;
-		text-decoration: none;
-	}
-
-	hr {
-		margin: 2*$ls $ls $ls;
-	}
-
-	.mastodon-embed, .youtube-embed {
-		display: block;
-		margin: $ls auto;
-		width: 100%;
-		max-width: 30rem !important;
-		border: 0;
-	}
-
-	.youtube-embed {
-		aspect-ratio: 16 / 9;
 	}
 }
 
+/* ===== FOOTER ===== */
 footer {
 	text-align: center;
 
@@ -369,46 +163,22 @@ footer {
 	}
 }
 
+/* ===== DARK MODE ===== */
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bgColor: #{$bgColorDark};
 		--bodyColor: #{$bodyColorDark};
-		--faintBodyColor: #{darken($bodyColorDark, 15%)};
 		--strongColor: #{$strongColorDark};
 		--fadeColor: #{$fadeColorDark};
-		--faintFadeColor: #{darken($fadeColorDark, 15%)};
 		--accentColor: #{$accentColorDark};
-		--faintAccentColor: #{desaturate(darken($accentColorLight, 15%), 20%)};
-	}
-
-	pre {
-		filter: invert(100%);
-		background-color: invert($bgColorDark) !important;
-		color: invert($strongColorDark);
 	}
 }
 
-@media(max-width: 500px) {
+/* ===== MOBILE FIX (IMPORTANT) ===== */
+@media (max-width: 500px) {
 	header {
-		height: 6*$ls;
 		flex-direction: column;
-		align-items: stretch;
-		justify-content: flex-start;
-		text-align: center;
-
-		nav {
-			justify-content: center;
-
-			a {
-				padding: 0 0.5*$ls;
-				flex: 1;
-
-				&:before {
-					top: auto;
-					bottom: 0;
-				}
-			}
-		}
+		height: auto;
 	}
 
 	main {
@@ -418,19 +188,24 @@ footer {
 	article {
 		padding: $ls;
 
+		/* Stack date and author cleanly */
+		.post-meta {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0;
+		}
+
+		.meta-separator {
+			display: none;
+		}
+
 		h1 {
 			font-size: 1.5rem;
 			line-height: $ls;
-			margin: $ls 0 0;
 		}
 
 		h2 {
 			font-size: 1rem;
-		}
-
-		pre {
-			margin: $ls 0;
-			padding: 0;
 		}
 	}
 }
